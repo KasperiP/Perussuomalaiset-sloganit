@@ -66,7 +66,8 @@ const scrape = async () => {
 		slogans.push(data);
 	}
 	let slogansFinal = slogans.filter(Boolean);
-	slogansFinal.forEach((value) => writeStream.write(`${value}\n`));
+	let slogansFinalUnique = [...new Set(slogansFinal)];
+	slogansFinalUnique.forEach((value) => writeStream.write(`${value}\n`));
 	writeStream.on('finish', () => {
 		console.log(
 			`Valmista! Kaikki sloganit kirjoitettu tiedostoon ${pathName}`
